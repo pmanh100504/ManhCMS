@@ -1,10 +1,7 @@
-﻿//Sinh viên: Phạm Văn Mạnh
+//Sinh viên: Phạm Văn Mạnh
 //MSSV: 2122110255
 //Lớp: CCQ2211G
 //Ngày tạo: 15/05/2026
-﻿//sinh vien: pham van manh
-//mssv:2122110255
-//ngay tao:15/5/26
 
 using System;
 using System.Collections.Generic;
@@ -22,6 +19,8 @@ namespace CMS.Data.Entities
 
         // Quan hệ: Một danh mục có nhiều bài viết
         public virtual ICollection<Post> Posts { get; set; }
+
+        // Quan hệ: Một danh mục có nhiều sản phẩm
+        public virtual ICollection<Product>? Products { get; set; }
     }
 }
-

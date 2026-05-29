@@ -1,10 +1,9 @@
-﻿//Sinh viên: Phạm Văn Mạnh
+//Sinh viên: Phạm Văn Mạnh
 //MSSV: 2122110255
 //Lớp: CCQ2211G
 //Ngày tạo: 15/05/2026
 
 using System;
-﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,11 +32,13 @@ namespace CMS.Data.Entities
 
         public string? ImageUrl { get; set; }
 
-        // Khóa ngoại nối tới CategoryProduct
-        public int CategoryProductId { get; set; }
+        // Khóa ngoại nối tới Category (cho phép nullable trong CSDL để tránh conflict dữ liệu cũ khi tạo FK, nhưng validation vẫn bắt buộc nhập)
+        [Required(ErrorMessage = "Vui lòng chọn danh mục sản phẩm")]
+        public int? CategoryId { get; set; }
 
-        [ForeignKey("CategoryProductId")]
-        public virtual CategoryProduct? CategoryProduct { get; set; }
+        [ForeignKey("CategoryId")]
+        public virtual Category? Category { get; set; }
+
+        public bool Published { get; set; }
     }
 }
-

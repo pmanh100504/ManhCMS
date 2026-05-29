@@ -1,0 +1,25 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+// Tham số 'id' được truyền vào từ URL (ví dụ: /Post/Index/5)
+public IActionResult Index(int? id)
+{
+// 1. Kiểm tra nếu không có id truyền vào thì trả về lỗi hoặc toàn bộ bài viết
+if (id == null)
+{
+return BadRequest("Vui lòng cung cấp mã danh mục.");
+}
+
+// 2. Sử dụng LINQ với tham số 'id' linh hoạt
+var posts = _context.Posts
+.Where(p => p.CategoryId == id)
+.OrderByDescending(p => p.CreatedDate)
+.Include(p => p.Category)
+.ToList();
+
+
+// 3. Truyền dữ liệu ra View
+return View(posts);
+}

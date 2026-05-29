@@ -1,4 +1,4 @@
-﻿using CMS.Data.Entities;
+using CMS.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -13,7 +13,6 @@ namespace CMS.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<CategoryProduct> CategoriesProducts { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Order> Orders { get; set; }

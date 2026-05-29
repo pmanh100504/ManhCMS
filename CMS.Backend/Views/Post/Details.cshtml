@@ -3,6 +3,9 @@
 //Lớp: CCQ2211G
 //Ngày tạo: 15/05/2026 *@
 @model CMS.Data.Entities.Post
+<div class="post-content">
+    @Html.Raw(Model.Content)
+</div>
 
 <div class="container mt-5">
     <nav aria-label="breadcrumb">
