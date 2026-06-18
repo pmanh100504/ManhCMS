@@ -1,0 +1,44 @@
+@model CMS.Data.Entities.Customer
+
+@{
+    ViewData["Title"] = "Chi tiết khách hàng";
+    Layout = "_LayoutAdmin";
+}
+
+<div class="container mt-4" style="max-width: 600px;">
+    <div class="card shadow">
+        <div class="card-header bg-info text-dark">
+            <h4 class="mb-0">CHI TIẾT KHÁCH HÀNG</h4>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-4 font-weight-bold">Mã khách hàng:</dt>
+                <dd class="col-sm-8">@Model.Id</dd>
+
+                <dt class="col-sm-4 font-weight-bold">Họ và tên:</dt>
+                <dd class="col-sm-8">@Model.FullName</dd>
+
+                <dt class="col-sm-4 font-weight-bold">Email:</dt>
+                <dd class="col-sm-8">@Model.Email</dd>
+
+                <dt class="col-sm-4 font-weight-bold">Số điện thoại:</dt>
+                <dd class="col-sm-8">@(string.IsNullOrEmpty(Model.Phone) ? "Chưa có" : Model.Phone)</dd>
+
+                <dt class="col-sm-4 font-weight-bold">Địa chỉ:</dt>
+                <dd class="col-sm-8">@(string.IsNullOrEmpty(Model.Address) ? "Chưa có" : Model.Address)</dd>
+
+                <dt class="col-sm-4 font-weight-bold">Mật khẩu:</dt>
+                <dd class="col-sm-8">@Model.Password</dd>
+            </dl>
+
+            <div class="d-flex justify-content-between mt-4">
+                <a asp-action="Index" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i> Quay lại
+                </a>
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">
+                    <i class="bi bi-pencil"></i> Chỉnh sửa
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

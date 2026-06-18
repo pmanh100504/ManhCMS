@@ -32,12 +32,18 @@ namespace CMS.Data.Entities
 
         public string? ImageUrl { get; set; }
 
-        // Khóa ngoại nối tới Category (cho phép nullable trong CSDL để tránh conflict dữ liệu cũ khi tạo FK, nhưng validation vẫn bắt buộc nhập)
-        [Required(ErrorMessage = "Vui lòng chọn danh mục sản phẩm")]
+        // Khóa ngoại nối tới Category (cho phép nullable trong CSDL để tránh conflict dữ liệu cũ khi tạo FK)
         public int? CategoryId { get; set; }
 
         [ForeignKey("CategoryId")]
         public virtual Category? Category { get; set; }
+
+        // Khóa ngoại nối tới CategoryProduct (dành cho quần áo / React Client)
+        [Required(ErrorMessage = "Vui lòng chọn danh mục sản phẩm")]
+        public int? CategoryProductId { get; set; }
+
+        [ForeignKey("CategoryProductId")]
+        public virtual CategoryProduct? CategoryProduct { get; set; }
 
         public bool Published { get; set; }
     }

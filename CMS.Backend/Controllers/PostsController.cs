@@ -1,4 +1,4 @@
-﻿//Sinh viên: Phạm Văn Mạnh
+//Sinh viên: Phạm Văn Mạnh
 //MSSV: 2122110255
 //Lớp: CCQ2211G
 //Ngày tạo: 22/05/2026
@@ -38,6 +38,7 @@ namespace CMS.Backend.Controllers
                     p.Title,
                     p.ImageUrl,
                     p.CreatedDate,
+                    p.CategoryId, // Thêm CategoryId để hỗ trợ lọc ở Frontend
                     CategoryName = p.Category.Name // Lấy tên danh mục thay vì chỉ lấy ID
                 })
                 .ToList();
@@ -68,9 +69,20 @@ namespace CMS.Backend.Controllers
         [HttpGet("{id}")]
         public IActionResult GetDetail(int id)
         {
-            // 2. Tìm bài viết đầu tiên có Id khớp với tham số truyền vào
+            // 2. Tìm bài viết đầu tiên có Id khớp với tham số truyền vào và lấy cả thông tin Category
             var post = _context.Posts
-                .FirstOrDefault(p => p.Id == id);
+                .Where(p => p.Id == id)
+                .Select(p => new
+                {
+                    p.Id,
+                    p.Title,
+                    p.Content,
+                    p.ImageUrl,
+                    p.CreatedDate,
+                    p.CategoryId,
+                    CategoryName = p.Category.Name
+                })
+                .FirstOrDefault();
 
             // 3. Xử lý trường hợp không tìm thấy (ID không tồn tại)
             if (post == null)

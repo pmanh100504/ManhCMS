@@ -1,4 +1,4 @@
-﻿//Sinh viên: Phạm Văn Mạnh
+//Sinh viên: Phạm Văn Mạnh
 //MSSV: 2122110255
 //Lớp: CCQ2211G
 //Ngày tạo: 22/05/2026
@@ -70,7 +70,7 @@ namespace CMS.Backend.Controllers
 
 
         [HttpPost]
-        public IActionResult Create(Post model, IFormFile uploadImage)
+        public IActionResult Create(Post model, IFormFile? uploadImage)
         {
             if (uploadImage != null && uploadImage.Length > 0)
             {
@@ -93,6 +93,16 @@ namespace CMS.Backend.Controllers
                 // 4. Lưu đường dẫn vào CSDL để sau này hiển thị
                 model.ImageUrl = "/uploads/" + fileName;
             }
+            else
+            {
+                if (string.IsNullOrEmpty(model.ImageUrl))
+                {
+                    model.ImageUrl = ""; // Tránh lỗi SQL Server không cho phép NULL
+                }
+            }
+
+            model.Title = model.Title ?? "";
+            model.Content = model.Content ?? "";
 
             _context.Posts.Add(model);
             _context.SaveChanges();
@@ -127,7 +137,7 @@ namespace CMS.Backend.Controllers
 
         // POST: Thực hiện cập nhật
         [HttpPost]
-        public IActionResult Edit(Post model, IFormFile uploadImage)
+        public IActionResult Edit(Post model, IFormFile? uploadImage)
         {
             // Bước 1: Kiểm tra xem người dùng có chọn file ảnh mới không
             if (uploadImage != null && uploadImage.Length > 0)
@@ -157,6 +167,9 @@ namespace CMS.Backend.Controllers
                     model.ImageUrl = oldPost.ImageUrl;
                 }
             }
+            model.Title = model.Title ?? "";
+            model.Content = model.Content ?? "";
+
             _context.Posts.Update(model);
             _context.SaveChanges();
             return RedirectToAction("Index");

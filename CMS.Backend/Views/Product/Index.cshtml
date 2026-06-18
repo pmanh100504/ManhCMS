@@ -13,85 +13,64 @@
         </a>
     </div>
     
-    <div class="card shadow">
-        <div class="card-body p-0">
-            <div class="table-responsive">
-                <table class="table table-hover table-striped mb-0">
-                    <thead class="table-dark">
-                        <tr>
-                            <th style="width: 80px;">Hình ảnh</th>
-                            <th>Tên sản phẩm</th>
-                            <th>Danh mục</th>
-                            <th>Giá bán</th>
-                            <th>Tồn kho</th>
-                            <th>Hiển thị</th>
-                            <th style="width: 200px;" class="text-center">Hành động</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if (Model != null && Model.Any())
+    <div class="row">
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <div class="col-md-4 mb-3">
+                    <div class="card shadow-sm h-100 d-flex flex-column">
+                        @if (!string.IsNullOrEmpty(item.ImageUrl))
                         {
-                            foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td>
-                                        @if (!string.IsNullOrEmpty(item.ImageUrl))
-                                        {
-                                            <img src="@item.ImageUrl" alt="@item.Name" class="img-thumbnail" style="width: 60px; height: 60px; object-fit: cover;" />
-                                        }
-                                        else
-                                        {
-                                            <div class="bg-light border text-center text-muted" style="width: 60px; height: 60px; line-height: 60px; font-size: 10px;">No image</div>
-                                        }
-                                    </td>
-                                    <td>
-                                        <div class="font-weight-bold">@item.Name</div>
-                                        <small class="text-muted text-truncate d-inline-block" style="max-width: 250px;">@item.Description</small>
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-info text-dark">@item.Category?.Name</span>
-                                    </td>
-                                    <td class="text-danger font-weight-bold">
-                                        @item.Price.ToString("N0") VNĐ
-                                    </td>
-                                    <td>
-                                        @item.StockQuantity
-                                    </td>
-                                    <td>
-                                        @if (item.Published)
-                                        {
-                                            <span class="badge bg-success">Có</span>
-                                        }
-                                        else
-                                        {
-                                            <span class="badge bg-secondary">Không</span>
-                                        }
-                                    </td>
-                                    <td class="text-center">
-                                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-info btn-sm" title="Chi tiết">
-                                            <i class="bi bi-eye"></i> Xem
-                                        </a>
-                                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-warning btn-sm" title="Sửa">
-                                            <i class="bi bi-pencil"></i> Sửa
-                                        </a>
-                                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm" title="Xóa">
-                                            <i class="bi bi-trash"></i> Xóa
-                                        </a>
-                                    </td>
-                                </tr>
-                            }
+                            <img src="@item.ImageUrl" class="card-img-top" alt="@item.Name" style="height: 200px; object-fit: cover;" />
                         }
                         else
                         {
-                            <tr>
-                                <td colspan="7" class="text-center py-4 text-muted">
-                                    Chưa có sản phẩm nào được tạo.
-                                </td>
-                            </tr>
+                            <div class="bg-light border text-center text-muted card-img-top d-flex align-items-center justify-content-center" style="height: 200px;">
+                                <span style="font-size: 14px;">Không có hình ảnh</span>
+                            </div>
                         }
-                    </tbody>
-                </table>
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <div>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="badge bg-info text-dark">@item.CategoryProduct?.Name</span>
+                                    @if (item.Published)
+                                    {
+                                        <span class="badge bg-success">Có hiển thị</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">Không hiển thị</span>
+                                    }
+                                </div>
+                                <h5 class="card-title text-primary">@item.Name</h5>
+                                <p class="card-text text-truncate text-muted">@item.Description</p>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="text-danger font-weight-bold" style="font-size: 1.1rem; font-weight: bold;">@item.Price.ToString("N0") VNĐ</span>
+                                    <span class="text-muted small">Tồn kho: @item.StockQuantity</span>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between mt-2 border-top pt-2">
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">
+                                    <i class="bi bi-eye"></i> Xem
+                                </a>
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-warning">
+                                    <i class="bi bi-pencil"></i> Sửa
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-trash"></i> Xóa
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-12 text-center py-5">
+                <p class="text-muted">Chưa có sản phẩm nào được tạo.</p>
             </div>
-        </div>
+        }
     </div>
 </div>

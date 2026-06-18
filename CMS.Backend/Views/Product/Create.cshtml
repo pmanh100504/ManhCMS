@@ -11,7 +11,7 @@
             <h4 class="mb-0">THÊM SẢN PHẨM MỚI</h4>
         </div>
         <div class="card-body">
-            <form asp-action="Create" method="post">
+            <form asp-action="Create" method="post" enctype="multipart/form-data">
                 <div class="form-group mb-3">
                     <label asp-for="Name" class="form-label">Tên sản phẩm</label>
                     <input asp-for="Name" class="form-control" />
@@ -35,14 +35,18 @@
                     </div>
                 </div>
                 <div class="form-group mb-3">
-                    <label asp-for="ImageUrl" class="form-label">Đường dẫn ảnh sản phẩm</label>
+                    <label asp-for="ImageUrl" class="form-label">Đường dẫn ảnh sản phẩm (URL)</label>
                     <input asp-for="ImageUrl" class="form-control" />
                     <span asp-validation-for="ImageUrl" class="text-danger"></span>
                 </div>
                 <div class="form-group mb-3">
-                    <label asp-for="CategoryId" class="form-label">Danh mục sản phẩm</label>
-                    <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
-                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                    <label class="form-label fw-bold">Ảnh sản phẩm (Tải lên từ máy)</label>
+                    <input type="file" name="uploadImage" class="form-control" />
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="CategoryProductId" class="form-label">Danh mục sản phẩm</label>
+                    <select asp-for="CategoryProductId" class="form-control" asp-items="ViewBag.CategoryProductId"></select>
+                    <span asp-validation-for="CategoryProductId" class="text-danger"></span>
                 </div>
                 <div class="form-group form-check mb-4">
                     <input asp-for="Published" class="form-check-input" />

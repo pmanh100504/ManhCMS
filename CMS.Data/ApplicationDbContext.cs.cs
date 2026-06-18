@@ -11,6 +11,7 @@ namespace CMS.Data
 
         // Khai báo các bảng dữ liệu
         public DbSet<Category> Categories { get; set; }
+        public DbSet<CategoryProduct> CategoriesProducts { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }

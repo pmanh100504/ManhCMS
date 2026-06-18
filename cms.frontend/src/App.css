@@ -1,38 +1,200 @@
-.App {
+/* Cấu hình chung cho toàn ứng dụng */
+body {
+  background-color: #f5f7fa;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #333;
+}
+
+/* Header style */
+header {
+  background: linear-gradient(135deg, #2b3a4a 0%, #1a252f 100%);
+  color: #fff !important;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 24px 30px !important;
+}
+
+header span.fs-4 {
+  font-size: 1.6rem !important;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Card customizations */
+.card {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: none !important;
+  border-radius: 12px !important;
+}
+
+.hover-shadow:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* List group hover effect */
+.list-group-item-action {
+  transition: all 0.2s ease-in-out;
+  border-left: 3px solid transparent;
+}
+
+.list-group-item-action:hover {
+  background-color: #f0f4f8 !important;
+  color: #007bff !important;
+  border-left: 3px solid #007bff;
+  padding-left: 28px !important;
+}
+
+.list-group-item-action:hover i {
+  color: #007bff !important;
+  opacity: 1 !important;
+  transform: translateX(3px);
+}
+
+/* Image cover style */
+.object-fit-cover {
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.hover-shadow:hover .object-fit-cover {
+  transform: scale(1.05);
+}
+
+/* Truncate text */
+.text-truncate-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 2.8em;
+}
+
+.text-hover-primary {
+  transition: color 0.2s ease;
+}
+
+.text-hover-primary:hover {
+  color: #007bff !important;
+  text-decoration: none;
+}
+
+.hover-underline:hover {
+  text-decoration: underline !important;
+}
+
+/* Jumbotron/Intro Box */
+.jumbotron {
+  border-radius: 12px !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+/* Blog Detail Styling */
+.blog-content-body {
+  font-size: 1.1rem;
+  line-height: 1.85;
+  color: #2d3748;
+}
+
+.blog-content-body p {
+  margin-bottom: 1.6rem;
+}
+
+.blog-content-body h2, 
+.blog-content-body h3, 
+.blog-content-body h4 {
+  font-weight: 700;
+  margin-top: 2.2rem;
+  margin-bottom: 1.1rem;
+  color: #1a252f;
+  line-height: 1.3;
+}
+
+.blog-content-body h2 { font-size: 1.75rem; }
+.blog-content-body h3 { font-size: 1.5rem; }
+.blog-content-body h4 { font-size: 1.25rem; }
+
+.blog-content-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+}
+
+.blog-content-body figure {
+  margin: 1.8rem 0;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.blog-content-body figure.image img {
+  margin: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.blog-content-body figcaption {
+  font-size: 0.88rem;
+  color: #718096;
+  margin-top: 0.6rem;
+  font-style: italic;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.blog-content-body blockquote {
+  border-left: 4px solid #11CAA0;
+  padding: 1rem 1.5rem;
+  margin: 2rem 0;
+  font-style: italic;
+  color: #4a5568;
+  background-color: rgba(17, 202, 160, 0.05);
+  border-radius: 0 8px 8px 0;
 }
 
-.App-link {
-  color: #61dafb;
+.blog-content-body ul, 
+.blog-content-body ol {
+  margin-bottom: 1.6rem;
+  padding-left: 2rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.blog-content-body li {
+  margin-bottom: 0.5rem;
 }
+
+.blog-content-body table {
+  width: 100%;
+  margin: 2rem 0;
+  border-collapse: collapse;
+}
+
+.blog-content-body th, 
+.blog-content-body td {
+  border: 1px solid #e2e8f0;
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+.blog-content-body th {
+  background-color: #f7fafc;
+  font-weight: 700;
+}
+
+/* Animation helper classes */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in .modal-dialog {
+  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(0.98); }
+}
+
+.animate-pulse:hover {
+  animation: pulse 1s infinite ease-in-out;
+}
+
+

@@ -2,11 +2,11 @@
 //MSSV: 2122110255
 //Lớp: CCQ2211G
 //Ngày tạo: 29/05/2026
-using Microsoft.AspNetCore.Mvc;
+using CMS.Data; // Thay bằng Namespace của project Data
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using CMS.Data; // Thay bằng Namespace của project Data
 
 public class AccountController : Controller
 {

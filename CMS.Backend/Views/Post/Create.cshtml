@@ -1,4 +1,4 @@
-﻿@* //Sinh viên: Phạm Văn Mạnh
+@* //Sinh viên: Phạm Văn Mạnh
 //MSSV: 2122110255
 //Lớp: CCQ2211G
 //Ngày tạo: 22/05/2026 *@
@@ -66,9 +66,14 @@
 @section Scripts {
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
     <script>
-        // Initialize CKEditor for the textarea with id 'Content'
         ClassicEditor
             .create(document.querySelector('#Content'))
+            .then(editor => {
+                // Đồng bộ dữ liệu CKEditor về textarea gốc mỗi khi có thay đổi (Real-time Sync)
+                editor.model.document.on('change:data', () => {
+                    document.querySelector('#Content').value = editor.getData();
+                });
+            })
             .catch(error => {
                 console.error(error);
             });
